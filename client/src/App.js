@@ -1,5 +1,7 @@
 import React, { useContext } from 'react'
 import { BrowserRouter as Router, Route, Switch } from 'react-router-dom'
+import "./assets/main.css";
+
 
 import Header from './components/global/Header'
 import Footer from './components/global/Footer'
@@ -14,7 +16,7 @@ function App() {
   return (
     <Router>
       <Header />
-      {user.isLoggedIn ? 
+      {user.isLoggedIn ?
         <AuthenticatedRoutes /> :
         <PublicRoutes />
       }

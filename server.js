@@ -14,6 +14,7 @@ const cronJob = require('cron').CronJob;
 import connectionDB from'./models/index'
 const PORT= process.env.PORT|| 3000
 const app = express()
+require('./routes/index')(app)
 app.use(express.json())
 app.use(cookieParser())
 app.use(session({
@@ -26,12 +27,13 @@ app.use(passport.initialize())
 app.use(passport.session())
 app.use(bodyParser.urlencoded({extended: false}))
 
-require('./routes')(app)
+import userRouter from'./routes/index'
 const workers = require('./workers/notification')
 
 if (NODE_ENV === 'production') {
     app.use(express.static('client/build'))
 }
+app.use(UserRoutes)
 
 db.sequelize.authenticate()
   .then(() => {

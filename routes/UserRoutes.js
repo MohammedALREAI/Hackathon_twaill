@@ -1,25 +1,11 @@
-const {
-    getUser, 
-    updateUser, 
-    getSettings, 
-    updateSettings,
-    createSettings
-} = require('../controllers/UserController')
+import UserController from "../controllers/UserController";
+import {Router} from 'express'
+const userRouter=require('express').Router({mergeParams:true})(Router)
+userRouter.route('api/user').get(userController)
 
-module.exports = router => {
-    /**
-     * user retrieval and management
-     */
-    router
-        .route('/')
-        .get(getUser)
-        .put(updateUser)
-    
-    router
-        .route('/settings')
-        .get(getSettings)
-        .put(updateSettings)
-        .post(createSettings)
+// for register 
+userRouter.post("register", UserController.register);
 
-    return router
-}
+
+
+export default userRouter;
