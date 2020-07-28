@@ -1,7 +1,6 @@
 if(process.env.NODE_ENV !== 'production') {
     require('dotenv').config()
 }
-
 const {  NODE_ENV } = process.env
 
 const express = require('express')
@@ -9,11 +8,10 @@ const session = require('express-session')
 const passport = require('./lib/passport')
 const bodyParser = require('body-parser')
 const cookieParser = require('cookie-parser')
-const db = require('./models/index')
 const cronJob = require('cron').CronJob;
-import connectionDB from'./models/index'
 const PORT= process.env.PORT|| 3000
 const app = express()
+mongoConnection
 require('./routes/index')(app)
 app.use(express.json())
 app.use(cookieParser())
@@ -35,11 +33,10 @@ if (NODE_ENV === 'production') {
 }
 app.use(UserRoutes)
 
-db.sequelize.authenticate()
-  .then(() => {
     app.listen((PORT) => {
       console.log(`the server is work in the port ${Port}`);
-    });
+      //this to connection db
+      new mongoConnection()
   })
   .catch((err) => {
     console.log(` there are some error ${err}`);

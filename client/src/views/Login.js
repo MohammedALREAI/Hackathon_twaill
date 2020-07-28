@@ -1,21 +1,14 @@
 import React, { useState, useContext } from 'react'
-import { Box, Container, TextField, Button } from '@material-ui/core'
-import { makeStyles } from '@material-ui/core/styles'
 import MainLayout from '../layouts/main'
-
 import { doPost } from '../lib/fetch'
 import { inputChangeHandler } from '../lib/eventHandlers'
 import FormAlert from '../components/FormAlert'
 import { AuthContext } from '../providers/Auth'
+import Container from '../components/global/Container'
+import FormLabel from '../components/global/FormLable'
+import Input from '../components/global/Input'
+import Button from '../components/global/Button'
 
-const useStyles = makeStyles((theme) => ({
-  root: {
-    '& .MuiTextField-root': {
-      margin: theme.spacing(1)
-    },
-    marginBottom: 40
-  }
-}))
 
 const Login = ({ location, history }) => {
   const classes = useStyles()
@@ -62,55 +55,44 @@ const Login = ({ location, history }) => {
 
   return (
     <MainLayout>
-      <Container maxWidth="xs">
-        <Box>
-          <h1>Login Page</h1>
-          <div>
-            <FormAlert
-              showAlert={showAlert}
-              setShowAlert={setShowAlert}
-              alertTitle={formResponse.title}
-              alertMessage={formResponse.message}
-              alertType={formResponse.type}
-            />
-          </div>
-          <div>
-            <form name="login-form" className={classes.root}>
-              {/* {username input} */}
-              <TextField
-                label="Username"
-                name="username"
-                fullWidth
-                variant="outlined"
-                onChange={handleInput}
-                value={loginState.username}
+         <h1 className="text-4xl mb-4">Login page</h1>
+         <div>
+              <FormAlert
+                    showAlert={showAlert}
+                    setShowAlert={setShowAlert}
+                    alertTitle={formResponse.title}
+                    alertType={formResponse.type}
+                    alertMessage={formResponse.message}
               />
+         </div>
 
-              {/* {password input} */}
-              <TextField
-                label="Password"
-                type="password"
-                name="password"
-                fullWidth
-                variant="outlined"
-                onChange={handleInput}
-                value={loginState.password}
-              />
+      <Container>
+          <form class="bg-white shadow-md rounded px-8 pt-6 pb-8 mb-4">
+               <div class="my-4">
+        <FormLabel forInput="username" textInput="Username" />
+        <Input
+          name="username"
+          type="text"
+          styling=""
+          onChange={handleInput}
+          value={loginState.username}
+        />
+        </div>
+     <div class="my-4">
 
-              <Button
-                onClick={submitForm}
-                variant="contained"
-                color="primary"
-                name="login"
-              >
-                Login
-              </Button>
-            </form>
-          </div>
-        </Box>
-      </Container>
-    </MainLayout>
-  )
+        <FormLabel forInput="password" textInput="Password" />
+        <Input
+          name="password"
+          type="password"
+          styling=""
+          onChange={handleInput}
+          value={loginState.password}
+        />
+        </div>
+        <Button onClick={onClick} textButton="login"  name="login" onClick={submitForm}/>
+        </form>
+        </Container>
+        </MainLayout>)
 }
 
 export default Login

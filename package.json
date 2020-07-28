@@ -25,16 +25,14 @@
     "jsonwebtoken": "^8.5.1",
     "moment": "^2.24.0",
     "moment-timezone": "^0.5.28",
+    "mongoose": "^5.9.26",
     "nodemon": "^2.0.4",
     "passport": "^0.4.1",
     "passport-jwt": "^4.0.0",
     "passport-local": "^1.0.0",
-    "pg": "^8.2.1",
-    "pg-hstore": "^2.3.3",
-    "sequelize": "^5.21.6",
-    "sequelize-auto-migrations": "https://github.com/Naddyson/sequelize-auto-migrations",
     "twilio": "^3.42.2",
-    "twilio-cli": "^2.0.0"
+    "twilio-cli": "^2.0.0",
+    "yup": "^0.29.2"
   },
   "devDependencies": {
     "@babel/core": "^7.10.5",
